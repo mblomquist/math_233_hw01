@@ -99,27 +99,18 @@ void problem_4e(){
 
     std::vector<double> x, y;
 
-    x.resize(5);
-    y.resize(5);
-
     x = sampledLegendre(-1., 1., 5, 2);
     y = sampledLegendre(-1., 1., 5, 4);
 
     double test_4e_01 = dot(x,y);
-
-    x.resize(10);
-    y.resize(10);
 
     x = sampledLegendre(-1., 1., 10, 2);
     y = sampledLegendre(-1., 1., 10, 4);
 
     double test_4e_02 = dot(x,y);
 
-    x.resize(15);
-    y.resize(15);
-
-    x = sampledLegendre(-1., 1., 15, 2);
-    y = sampledLegendre(-1., 1., 15, 4);
+    x = sampledLegendre(-1., 1., 20, 2);
+    y = sampledLegendre(-1., 1., 20, 4);
 
     double test_4e_03 = dot(x,y);
 
@@ -188,8 +179,6 @@ int main() {
     std::cout << std::endl;
 
     // Problem 4b solution.
-    double test_4b_00, test_4b_01, test_4b_02, test_4b_03, test_4b_04, test_4b_05;
-
     std::cout << "Problem 4b solution:" << std::endl;
     problem_4b();
     std::cout << std::endl;
@@ -204,8 +193,8 @@ int main() {
     problem_4c();
     std::cout << std::endl;
 
-    //Problem 4e solution.
-    std::cout << "Problem 4e solution:" << std::endl;
+    //Problem 4e exploration.
+    std::cout << "Problem 4e exploration:" << std::endl;
     problem_4e();
 
     return 0;
