@@ -60,9 +60,7 @@ double Legendre(double x, int n){
     }
 }
 
-void problem_4c(){
 
-}
 
 std::vector<double> sampledLegendre(double a, double b, int N, int n){
 
@@ -80,6 +78,13 @@ std::vector<double> sampledLegendre(double a, double b, int N, int n){
 
     return output;
 
+}
+
+void problem_4c(){
+    std::vector<double> test_4c_00;
+    test_4c_00 = sampledLegendre(-1., 1., 5, 2);
+    for (int i = 0; i < 5; i++)
+        std::cout << test_4c_00[i] << std::endl;
 }
 
 double dot(std::vector<double> x, std::vector<double> y){
@@ -114,9 +119,9 @@ void problem_4e(){
 
     double test_4e_03 = dot(x,y);
 
-    std::cout << test_4e_01 << std::endl;
-    std::cout << test_4e_02 << std::endl;
-    std::cout << test_4e_03 << std::endl;
+    std::cout << "N = 5, x*y = " << test_4e_01 << std::endl;
+    std::cout << "N = 10, x*y = " << test_4e_02 << std::endl;
+    std::cout << "N = 20, x*y = " << test_4e_03 << std::endl;
 }
 
 void problem_4b(){
@@ -185,11 +190,6 @@ int main() {
 
     // Problem 4c solution.
     std::cout << "Problem 4c solution:" << std::endl;
-    std::vector<double> test_4c_00;
-    test_4c_00.resize(5);
-    test_4c_00 = sampledLegendre(-1., 1., 5, 2);
-    for (int i = 0; i < 5; i++)
-        std::cout << test_4c_00[i] << std::endl;
     problem_4c();
     std::cout << std::endl;
 
