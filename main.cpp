@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 // Problem 2
 void problem_2() {
@@ -6,34 +7,34 @@ void problem_2() {
 }
 
 // Problem 3c
-#define M 3
-#define N 4
-#define L 5
+#define MM 3
+#define NN 4
+#define LL 5
 
 // Dynamic allocation of a three-dimensional array
 void problem_3c() {
 // Define my_array
-    auto*** my_array = new double**[M];
-    for (int i = 0; i < M; i++){
-        my_array[i] = new double*[N];
-        for (int j = 0; j < N; j++){
-            my_array[i][j] = new double[L];
+    auto*** my_array = new double**[MM];
+    for (int i = 0; i < MM; i++){
+        my_array[i] = new double*[NN];
+        for (int j = 0; j < NN; j++){
+            my_array[i][j] = new double[LL];
         }
     }
     double val = 0;
 // Assign values to my_array
-    for (int i = 0; i < M; i++){
-        for (int j = 0; j < N; j++){
-            for (int k = 0; k < L; k++){
+    for (int i = 0; i < MM; i++){
+        for (int j = 0; j < NN; j++){
+            for (int k = 0; k < LL; k++){
                 my_array[i][j][k] = val;
                 val++;
             }
         }
     }
 // Print out my_array
-    for (int i = 0; i < M; i++){
-        for (int j = 0; j < N; j++){
-            for (int k = 0; k < L; k++){
+    for (int i = 0; i < MM; i++){
+        for (int j = 0; j < NN; j++){
+            for (int k = 0; k < LL; k++){
                 std::cout << my_array[i][j][k] << " ";
             }
             std::cout << "\n";
@@ -59,6 +60,23 @@ double Legendre(double x, int n){
     }
 }
 
+std::vector<double> sampledLegendre(double a, double b, int N, int n){
+
+    if (a < -1. || b > 1.)
+        throw std::invalid_argument("the range for a & b is out of bounds");
+
+    double dx = (b - a) / (N - 1.);
+
+    std::vector<double> output;
+    output.resize(N);
+
+    for (int i = 0; i < N; i++){
+        output[i] = Legendre(a+dx*i, n);
+    }
+
+    return output;
+
+}
 void problem_4c(){
 
 }
@@ -94,7 +112,12 @@ int main() {
 
     // Problem 4c solution.
     std::cout << "Problem 4c solution:" << std::endl;
+    std::vector<double> test_4c_00;
+    test_4c_00.resize(5);
+    test_4c_00 = sampledLegendre(-1., 1., 5, 2);
+    for (int i = 0; i < 5; i++)
+        std::cout << test_4c_00[i] << std::endl;
     problem_4c();
-    std::cout << std::endl;
+
     return 0;
 }
