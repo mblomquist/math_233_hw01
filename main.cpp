@@ -60,6 +60,10 @@ double Legendre(double x, int n){
     }
 }
 
+void problem_4c(){
+
+}
+
 std::vector<double> sampledLegendre(double a, double b, int N, int n){
 
     if (a < -1. || b > 1.)
@@ -77,9 +81,100 @@ std::vector<double> sampledLegendre(double a, double b, int N, int n){
     return output;
 
 }
-void problem_4c(){
 
+double dot(std::vector<double> x, std::vector<double> y){
+
+    if (x.size() != y.size())
+        throw std::invalid_argument("expected x and y to be the same size");
+
+    double sum = 0.;
+
+    for (int i = 0; i < x.size(); i++)
+        sum += x[i] * y[i];
+
+    return sum;
 }
+
+void problem_4e(){
+
+    std::vector<double> x, y;
+
+    x.resize(5);
+    y.resize(5);
+
+    x = sampledLegendre(-1., 1., 5, 2);
+    y = sampledLegendre(-1., 1., 5, 4);
+
+    double test_4e_01 = dot(x,y);
+
+    x.resize(10);
+    y.resize(10);
+
+    x = sampledLegendre(-1., 1., 10, 2);
+    y = sampledLegendre(-1., 1., 10, 4);
+
+    double test_4e_02 = dot(x,y);
+
+    x.resize(15);
+    y.resize(15);
+
+    x = sampledLegendre(-1., 1., 15, 2);
+    y = sampledLegendre(-1., 1., 15, 4);
+
+    double test_4e_03 = dot(x,y);
+
+    std::cout << test_4e_01 << std::endl;
+    std::cout << test_4e_02 << std::endl;
+    std::cout << test_4e_03 << std::endl;
+}
+
+void problem_4b(){
+
+    double test_4b_00, test_4b_01, test_4b_02, test_4b_03, test_4b_04, test_4b_05;
+
+    test_4b_00 = Legendre(0.5, 0);
+    test_4b_01 = Legendre(0.5, 1);
+    test_4b_02 = Legendre(0.5, 2);
+    test_4b_03 = Legendre(0.5, 3);
+    test_4b_04 = Legendre(0.5, 4);
+    test_4b_05 = Legendre(0.5, 5);
+
+    if (test_4b_00 == 1.){
+        std::cout << "Test 0 passed." << std::endl;
+    } else {
+        std::cout << "Test 0 failed." << std::endl;
+    }
+
+    if (test_4b_01 == 0.5){
+        std::cout << "Test 1 passed." << std::endl;
+    } else {
+        std::cout << "Test 1 failed." << std::endl;
+    }
+    if (test_4b_02 == -0.125){
+        std::cout << "Test 2 passed." << std::endl;
+    } else {
+        std::cout << "Test 2 failed." << std::endl;
+    }
+
+    if (test_4b_03 == -0.4375){
+        std::cout << "Test 3 passed." << std::endl;
+    } else {
+        std::cout << "Test 3 failed." << std::endl;
+    }
+
+    if (test_4b_04 == (-37./128.)){
+        std::cout << "Test 4 passed." << std::endl;
+    } else {
+        std::cout << "Test 4 failed." << std::endl;
+    }
+
+    if (test_4b_05 == (23./256.)){
+        std::cout << "Test 5 passed." << std::endl;
+    } else {
+        std::cout << "Test 5 failed." << std::endl;
+    }
+}
+
 int main() {
 
     // Problem 2 solution.
@@ -96,19 +191,8 @@ int main() {
     double test_4b_00, test_4b_01, test_4b_02, test_4b_03, test_4b_04, test_4b_05;
 
     std::cout << "Problem 4b solution:" << std::endl;
-    test_4b_00 = Legendre(0.5, 0);
-    test_4b_01 = Legendre(-0.4, 1);
-    test_4b_02 = Legendre(0.3, 2);
-    test_4b_03 = Legendre(-0.6, 3);
-    test_4b_04 = Legendre(0.7, 4);
-    test_4b_05 = Legendre(-0.8, 5);
-
-    std::cout << test_4b_00 << std::endl;
-    std::cout << test_4b_01 << std::endl;
-    std::cout << test_4b_02 << std::endl;
-    std::cout << test_4b_03 << std::endl;
-    std::cout << test_4b_04 << std::endl;
-    std::cout << test_4b_05 << std::endl;
+    problem_4b();
+    std::cout << std::endl;
 
     // Problem 4c solution.
     std::cout << "Problem 4c solution:" << std::endl;
@@ -118,6 +202,11 @@ int main() {
     for (int i = 0; i < 5; i++)
         std::cout << test_4c_00[i] << std::endl;
     problem_4c();
+    std::cout << std::endl;
+
+    //Problem 4e solution.
+    std::cout << "Problem 4e solution:" << std::endl;
+    problem_4e();
 
     return 0;
 }
